@@ -1,0 +1,16 @@
+def movie_organizer(*args):
+    movie_org = {}
+    result = ''
+    for name, genre in args:
+        if genre not in movie_org:
+            movie_org[genre] = []
+        movie_org[genre].append(name)
+
+    sorted_collection = sorted(movie_org.items(), key=lambda kvp: (-len(kvp[1]), kvp[0]))
+    for genre, movies in sorted_collection:
+        result += f"{genre} - {len(movies)}\n"
+        for movie in sorted(movies):
+            result += f"* {movie}"
+            result += "\n"
+
+    return result
